@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLASSIFIED // BIRTHDAY PROTOCOL</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;color:#00ff88;font-family:"Courier New",monospace}
+#matrix{position:fixed;inset:0;z-index:0;opacity:.35}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;background:repeating-linear-gradient(0deg,rgba(0,255,120,.025),rgba(0,255,120,.025) 1px,transparent 1px,transparent 4px)}
+.terminal{position:relative;z-index:5;width:min(900px,94vw);height:min(90vh,800px);margin:auto;top:50%;transform:translateY(-50%);border:1px solid #00ff88;border-radius:10px;background:rgba(0,10,5,.93);box-shadow:0 0 10px #00ff88,0 0 35px rgba(0,255,136,.3),inset 0 0 35px rgba(0,255,136,.05);overflow:hidden}
+.topbar{height:42px;display:flex;align-items:center;justify-content:space-between;padding:0 15px;border-bottom:1px solid #00ff88;background:rgba(0,255,136,.04);font-size:11px}
+.red{color:#ff3355}.yellow{color:#ffcc00}.green{color:#00ff88}
+.content{height:calc(100% - 42px);overflow-y:auto;padding:25px}
+#boot{font-size:13px;line-height:1.7;min-height:260px}
+.blink{animation:blink .7s infinite}@keyframes blink{50%{opacity:0}}
+.access{display:none;text-align:center;animation:accessIn 1s forwards}
+@keyframes accessIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+.access h2{font-size:clamp(35px,10vw,85px);margin:20px 0;color:#00ff88;text-shadow:0 0 5px #00ff88,0 0 20px #00ff88,0 0 50px #00ff88;animation:glitch 1.5s infinite}
+@keyframes glitch{0%,85%,100%{transform:translate(0)}88%{transform:translate(-6px,2px)}91%{transform:translate(5px,-2px)}94%{transform:translate(-3px,1px)}}
+#birthday{display:none;text-align:center;animation:birthdayIn 1.5s forwards}
+@keyframes birthdayIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.warning{color:#ffcc00;letter-spacing:3px;font-size:12px}
+.birthday-title{margin:15px 0 0;font-size:clamp(38px,11vw,90px);color:#00ff88;text-shadow:0 0 5px #00ff88,0 0 20px #00ff88,0 0 50px #00ff88;animation:glitch 2s infinite}
+.sister{margin-top:10px;font-size:clamp(20px,5vw,38px);color:#ff4fd8;text-shadow:0 0 10px #ff4fd8,0 0 30px #ff4fd8}
+.cake{font-size:75px;margin:15px;animation:bounce 1.2s infinite,glow 2s infinite alternate}
+@keyframes bounce{50%{transform:translateY(-15px)}}@keyframes glow{from{filter:drop-shadow(0 0 5px #ff4fd8)}to{filter:drop-shadow(0 0 25px #ff4fd8)}}
+.message{max-width:700px;margin:25px auto;padding:25px;border:1px dashed #00ff88;background:rgba(0,255,136,.035);color:#d8ffe9;line-height:1.7;text-align:left;box-shadow:inset 0 0 20px rgba(0,255,136,.04)}
+.message strong{color:#ff4fd8}
+.status{max-width:650px;margin:20px auto;text-align:left;font-size:13px}.status-line{padding:5px 0}
+.progress{height:10px;margin-top:5px;border:1px solid #00ff88;overflow:hidden}.progress-inner{height:100%;width:0%;background:#00ff88;box-shadow:0 0 15px #00ff88;animation:progress 2s forwards}
+@keyframes progress{to{width:100%}}
+.buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+button{padding:13px 20px;border:1px solid #00ff88;border-radius:5px;background:transparent;color:#00ff88;font-family:"Courier New",monospace;font-weight:bold;cursor:pointer;transition:.2s;box-shadow:0 0 8px rgba(0,255,136,.15)}
+button:hover{background:#00ff88;color:#000;box-shadow:0 0 10px #00ff88,0 0 30px #00ff88}
+#secret{display:none;margin:25px auto;max-width:650px;padding:25px;border:1px solid #ff4fd8;color:#fff;background:rgba(255,79,216,.06);box-shadow:0 0 20px rgba(255,79,216,.2);animation:secretIn 1s forwards}
+@keyframes secretIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+#confetti{position:fixed;inset:0;z-index:15;pointer-events:none;overflow:hidden}.confetti-piece{position:absolute;top:-30px;font-size:20px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.footer{margin-top:30px;font-size:10px;color:#557766;text-align:center}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div id="confetti"></div>
+<div class="terminal">
+<div class="topbar">
+<span><span class="red">●</span> <span class="yellow">●</span> <span class="green">●</span>&nbsp; BIRTHDAY_PROTOCOL.exe</span>
+<span>SECURE CONNECTION <span class="blink">●</span></span>
+</div>
+<div class="content">
+<div id="boot"></div>
+<div class="access" id="access">
+<div class="warning">⚠ SYSTEM OVERRIDE DETECTED ⚠</div>
+<h2>ACCESS<br>GRANTED</h2>
+<p>AUTHORIZED USER: <span class="green">SmaLL My Lil SiS XoXo</span></p>
+<p>BIRTHDAY PAYLOAD READY...</p>
+</div>
+<div id="birthday">
+<div class="warning">⚠ CLASSIFIED BIRTHDAY TRANSMISSION ⚠</div>
+<div class="cake">🎂</div>
+<div class="birthday-title">HAPPY<br>BIRTHDAY!</div>
+<div class="sister">// MY LITTLE SISTER //</div>
+<div class="status">
+<div class="status-line">➜ Birthday Protocol: <span class="green">ACTIVATED ✓</span></div>
+<div class="status-line">➜ Cake.exe: <span class="green">LOADED ✓</span></div>
+<div class="status-line">➜ Happiness: <span class="green">100% ✓</span></div>
+<div class="status-line">➜ Sister Awesomeness: <span class="green">MAXIMUM ✓</span></div>
+<div class="progress"><div class="progress-inner"></div></div>
+</div>
+<div class="message">
+<strong>SYSTEM MESSAGE FROM YOUR BROTHER:</strong><br><br>
+Today the entire birthday network has been taken offline for one extremely important reason...
+<br><br><strong>IT'S YOUR BIRTHDAY.</strong> 🎉<br><br>
+I just wanted to send a special message to my little sister and remind you that you're an important part of the family.
+<br><br>
+I hope today brings you a ridiculous amount of happiness, laughter, great memories, and enough cake to cause a complete system overload. 🍰
+<br><br>
+No matter how many years get added to the system, you'll always be my little sister.
+<br><br>❤️<br><br>
+Have an absolutely incredible birthday!
+</div>
+<div class="buttons">
+<button onclick="launchParty()">🎉 LAUNCH PARTY</button>
+<button onclick="showSecret()">🔐 DECRYPT SECRET MESSAGE</button>
+<button onclick="soundEffect()">🔊 SYSTEM SOUND</button>
+</div>
+<div id="secret">
+<strong>🔓 SECRET MESSAGE DECRYPTED</strong><br><br>
+Congratulations. You have successfully completed another year of existence.
+<br><br>
+Your current status:<br><br>
+❤️ LOVED<br>⭐ AWESOME<br>🎂 BIRTHDAY MODE: ACTIVE<br>🥳 FUN LEVEL: CRITICAL
+<br><br>SYSTEM CONCLUSION:<br><br>
+<strong>YOU'RE ONE OF A KIND.</strong><br><br>
+Happy Birthday, Sis. ❤️
+</div>
+<div class="footer">CONNECTION: SECURED<br>BIRTHDAY TRANSMISSION: COMPLETE<br>CAKE SECURITY: COMPROMISED<br><br>[ END OF TRANSMISSION ]</div>
+</div>
+</div>
+</div>
+<script>
+const canvas=document.getElementById("matrix"),ctx=canvas.getContext("2d");
+canvas.width=innerWidth;canvas.height=innerHeight;
+const characters="01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&@",fontSize=14;
+let columns=Math.floor(canvas.width/fontSize),drops=Array(columns).fill(1);
+function matrixRain(){ctx.fillStyle="rgba(0,0,0,.08)";ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle="#00ff88";ctx.font=fontSize+"px monospace";for(let i=0;i<drops.length;i++){const text=characters[Math.floor(Math.random()*characters.length)];ctx.fillText(text,i*fontSize,drops[i]*fontSize);if(drops[i]*fontSize>canvas.height&&Math.random()>.975)drops[i]=0;drops[i]++}}
+setInterval(matrixRain,45);
+
+const bootLines=[
+"> INITIALIZING BIRTHDAY SYSTEM...",
+"> Establishing encrypted connection...",
+"> Searching birthday database...",
+"> Searching family database...",
+"> Locating target...",
+"> TARGET FOUND.",
+"> Identity confirmed.",
+"> LITTLE SISTER",
+"> Checking birthday credentials...",
+"> Birthday credentials VALID.",
+"> Loading cake.exe...",
+"> Loading party.exe...",
+"> Loading happiness.exe...",
+"> Installing good vibes...",
+"> ███░░░░░░░░░░░░░ 20%",
+"> ███████░░░░░░░░░ 50%",
+"> ████████████░░░░ 80%",
+"> ████████████████ 100%",
+"",
+"> SECURITY BYPASS COMPLETE.",
+"> BIRTHDAY PAYLOAD READY."
+];
+let lineIndex=0;
+function bootSequence(){if(lineIndex<bootLines.length){const line=document.createElement("div");line.textContent=bootLines[lineIndex];document.getElementById("boot").appendChild(line);lineIndex++;setTimeout(bootSequence,350)}else setTimeout(showAccess,900)}
+function showAccess(){document.getElementById("boot").style.display="none";document.getElementById("access").style.display="block";soundEffect();setTimeout(showBirthday,3000)}
+function showBirthday(){document.getElementById("access").style.display="none";document.getElementById("birthday").style.display="block";launchParty()}
+function launchParty(){const container=document.getElementById("confetti"),pieces=["🎉","🎂","🎈","✨","💖","🥳","🎁","⭐","💥"];for(let i=0;i<100;i++){const piece=document.createElement("div");piece.className="confetti-piece";piece.textContent=pieces[Math.floor(Math.random()*pieces.length)];piece.style.left=Math.random()*100+"vw";piece.style.animationDuration=3+Math.random()*5+"s";piece.style.animationDelay=Math.random()*2+"s";container.appendChild(piece);setTimeout(()=>piece.remove(),9000)}}
+function showSecret(){const secret=document.getElementById("secret");secret.style.display="block";soundEffect();secret.scrollIntoView({behavior:"smooth"})}
+function soundEffect(){try{const AudioContext=window.AudioContext||window.webkitAudioContext,audio=new AudioContext(),oscillator=audio.createOscillator(),gain=audio.createGain();oscillator.type="square";oscillator.frequency.setValueAtTime(180,audio.currentTime);oscillator.frequency.exponentialRampToValueAtTime(700,audio.currentTime+.12);gain.gain.setValueAtTime(.08,audio.currentTime);gain.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.25);oscillator.connect(gain);gain.connect(audio.destination);oscillator.start();oscillator.stop(audio.currentTime+.25)}catch(e){}}
+addEventListener("resize",()=>{canvas.width=innerWidth;canvas.height=innerHeight;columns=Math.floor(canvas.width/fontSize);drops=Array(columns).fill(1)});
+bootSequence();
+</script>
+</body>
+</html>
